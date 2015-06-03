@@ -414,12 +414,22 @@ NSArray *ClassGetSubclasses(Class parentClass) {
         @"truncatingMiddle" : @(NSLineBreakByTruncatingMiddle)
     };
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED < 80000 ) )
+
+    NSDictionary *barMetricsMap = @{
+        @"default"                : @(UIBarMetricsDefault),
+        @"landscapePhone"        : @(UIBarMetricsDefault),
+        @"defaultPrompt"         : @(UIBarMetricsDefaultPrompt),
+        @"landscapePhonePrompt" : @(UIBarMetricsDefault),
+        };
+#else
     NSDictionary *barMetricsMap = @{
         @"default"                : @(UIBarMetricsDefault),
         @"landscapePhone"        : @(UIBarMetricsLandscapePhone),
         @"defaultPrompt"         : @(UIBarMetricsDefaultPrompt),
         @"landscapePhonePrompt" : @(UIBarMetricsLandscapePhonePrompt),
     };
+#endif
 
     NSDictionary *searchBarIconMap = @{
         @"search"       : @(UISearchBarIconSearch),
